@@ -4,6 +4,45 @@ if &compatible
   set nocompatible
 endif
 
+"dein Scripts-----------------------------
+if &compatible
+  set nocompatible               " Be iMproved
+endif
+
+" Required:
+set runtimepath+=/home/hamada/.cache/dein/repos/github.com/Shougo/dein.vim
+
+" Required:
+if dein#load_state('/home/hamada/.cache/dein')
+  call dein#begin('/home/hamada/.cache/dein')
+
+  " Let dein manage dein
+  " Required:
+  call dein#add('/home/hamada/.cache/dein/repos/github.com/Shougo/dein.vim')
+
+  " Add or remove your plugins here like this:
+  call dein#add('Shougo/neosnippet.vim')
+  call dein#add('Shougo/neosnippet-snippets')
+  call dein#load_toml('~/.config/nvim/dein.toml', {'lazy' : 0})
+  call dein#load_toml('~/.config/nvim/deinlazy.toml', {'lazy' : 1})
+  call dein#load_toml('~/.config/nvim/deinft.toml')
+
+  " Required:
+  call dein#end()
+  call dein#save_state()
+endif
+
+" Required:
+filetype plugin indent on
+syntax enable
+
+" If you want to install not installed plugins on startup.
+if dein#check_install()
+  call dein#install()
+endif
+
+"End dein Scripts-------------------------
+
 augroup MyAutoCmd
   autocmd!
 augroup END
@@ -20,35 +59,6 @@ if has('nvim')
 elseif has('patch-7.4.1778')
   set guicolors
 endif
-
-let s:dein_cache_path = expand('~/.cache/nvim/dein')
-let s:dein_dir = s:dein_cache_path
-      \ .'/repos/github.com/Shougo/dein.vim'
-
-if &runtimepath !~ '/dein.vim'
-  if !isdirectory(s:dein_dir)
-    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_dir
-  endif
-  execute 'set runtimepath+=' . fnamemodify(s:dein_dir, ':p')
-endif
-
-if dein#load_state(s:dein_cache_path)
-  call dein#begin(s:dein_cache_path)
-
-  call dein#load_toml('~/.config/nvim/dein.toml', {'lazy' : 0})
-  call dein#load_toml('~/.config/nvim/deinlazy.toml', {'lazy' : 1})
-  call dein#load_toml('~/.config/nvim/deinft.toml')
-
-  call dein#end()
-  call dein#save_state()
-endif
-
-if dein#check_install()
-  call dein#install()
-endif
-
-filetype plugin indent on
-syntax enable
 
 runtime! ./options.rc.vim
 runtime! ./keymap.rc.vim
