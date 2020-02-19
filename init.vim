@@ -1,9 +1,5 @@
 set number
 
-if &compatible
-  set nocompatible
-endif
-
 "dein Scripts-----------------------------
 if &compatible
   set nocompatible               " Be iMproved
