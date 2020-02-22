@@ -1,11 +1,3 @@
-" Show line number
-set number
-" Use spaces instead of tabs
-set expandtab
-" 1 tab == 2 spaces
-set shiftwidth=2
-set tabstop=2
-
 if &compatible
   set nocompatible
 endif
@@ -45,12 +37,10 @@ if dein#load_state(s:dein_cache_path)
   call dein#load_toml('~/.config/nvim/deinlazy.toml', {'lazy' : 1})
   call dein#load_toml('~/.config/nvim/deinft.toml')
 
+  call dein#add('neoclide/coc.nvim', {'merged':0, 'rev': 'release'})
+
   call dein#end()
   call dein#save_state()
-endif
-
-if dein#check_install()
-  call dein#install()
 endif
 
 filetype plugin indent on
@@ -60,3 +50,13 @@ runtime! ./options.rc.vim
 runtime! ./keymap.rc.vim
 runtime! ./functions.rc.vim
 runtime! ./plugins.rc.vim
+
+if !has('nvim')
+  call dein#add('roxma/nvim-yarp')
+  call dein#add('roxma/vim-hug-neovim-rpc')
+endif
+
+if dein#check_install()
+  call dein#install()
+endif
+

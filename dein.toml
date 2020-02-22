@@ -38,7 +38,17 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'Shougo/defx.nvim'
+
+[[plugins]]
 repo = 'osyo-manga/vim-anzu'
 hook_add = '''
   source ~/.config/nvim/plugins/anzu.vim
 '''
+
+[[plugins]]
+repo = 'vim-airline/vim-airline'
+
+[[plugins]]
+repo = 'vim-airline/vim-airline-theme'
+
